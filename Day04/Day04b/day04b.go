@@ -20,12 +20,12 @@ type passport struct {
 
 func main() {
 	log.SetLevel(log.DebugLevel)
-    log.SetFormatter(&log.TextFormatter{
-		ForceColors: true,
+	log.SetFormatter(&log.TextFormatter{
+		ForceColors:            true,
 		DisableLevelTruncation: true,
-		PadLevelText: true,
+		PadLevelText:           true,
 	})
-//	log.SetReportCaller(true)
+	//	log.SetReportCaller(true)
 
 	data := readInput()
 

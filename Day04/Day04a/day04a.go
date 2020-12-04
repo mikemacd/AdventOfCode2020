@@ -6,8 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
-
-//	"github.com/davecgh/go-spew/spew"
+	//	"github.com/davecgh/go-spew/spew"
 )
 
 type passports []passport
@@ -20,12 +19,12 @@ func main() {
 	data := readInput()
 
 	n := data.countValidPassports()
-	fmt.Printf("Valid passports:%d out of %d \n",n,len(data))
+	fmt.Printf("Valid passports:%d out of %d \n", n, len(data))
 
-//	spew.Dump(data)
+	//	spew.Dump(data)
 }
 func (p passports) countValidPassports() (num int) {
-	for _,passport := range p {
+	for _, passport := range p {
 		if passport.isValid() {
 			num++
 		}
@@ -33,16 +32,16 @@ func (p passports) countValidPassports() (num int) {
 	return
 }
 
-func (p passport) isValid() (bool) {
-	requiredFields := []string{"byr","iyr","eyr","hgt","hcl","ecl","pid"}
-	permittedFields := []string{"byr","iyr","eyr","hgt","hcl","ecl","pid","cid"}
+func (p passport) isValid() bool {
+	requiredFields := []string{"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
+	permittedFields := []string{"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid", "cid"}
 
-	for k,_ := range p.fields {
+	for k, _ := range p.fields {
 		permitted := false
-		for _,f := range permittedFields {
-			if k==f {
+		for _, f := range permittedFields {
+			if k == f {
 				permitted = true
-			} 
+			}
 		}
 		if !permitted {
 			// non permitted field
@@ -51,12 +50,12 @@ func (p passport) isValid() (bool) {
 		}
 	}
 
-	for _,f := range requiredFields {
-		if _,ok := p.fields[f]; !ok {
+	for _, f := range requiredFields {
+		if _, ok := p.fields[f]; !ok {
 			// fmt.Printf("Missing required field %s in %v\n", f, p )
 			return false
 		}
-		
+
 	}
 
 	return true
@@ -79,7 +78,7 @@ func readInput() (data passports) {
 	for _, line := range lines {
 		if len(line) <= 1 {
 			for pk, pf := range passportFields {
-				passportFields[string(pk)]=strings.Trim(string(pf), "\n\r")
+				passportFields[string(pk)] = strings.Trim(string(pf), "\n\r")
 			}
 			data = append(data, passport{fields: passportFields})
 			passportFields = map[string]string{}
@@ -93,7 +92,6 @@ func readInput() (data passports) {
 	}
 
 	data = append(data, passport{fields: passportFields})
-
 
 	return
 }

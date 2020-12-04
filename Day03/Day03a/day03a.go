@@ -88,7 +88,7 @@ func (f forest) countTrees(x, y int) (num int) {
 }
 
 func (f forest) print() {
-fmt.Printf("dimensions %d x %d\n", f.width, f.height)
+	fmt.Printf("dimensions %d x %d\n", f.width, f.height)
 
 	fmt.Printf("    ")
 	for x := 0; x < f.width; x++ {
