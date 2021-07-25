@@ -56,7 +56,6 @@ func readInput() (data votes) {
 	}
 
 	contents := strings.ReplaceAll(string(f), "\r\n", "\n")
-	//	re := regexp.MustCompile("(?P<G>(([^\r\n]+)\r?\n)+)(\r?\n)(?P<G2>([^\r\n]+))")
 
 	lines := strings.Split(contents, "\n")
 
